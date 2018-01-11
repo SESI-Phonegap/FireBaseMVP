@@ -14,9 +14,11 @@ import com.example.gonzch.firebaseexample.data.model.FriendlyMessage
 class MsgAdapter internal constructor(context: Context, objects:MutableList<FriendlyMessage>) : RecyclerView.Adapter<MessageViewHolder>(){
 
     var items: MutableList<FriendlyMessage>
+    var itemsremoval : MutableList<FriendlyMessage>
 
     init {
         items = objects
+        itemsremoval = items
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MessageViewHolder {
@@ -51,6 +53,11 @@ class MsgAdapter internal constructor(context: Context, objects:MutableList<Frie
 
     fun setMessage(message : FriendlyMessage){
         this.items.add(message)
+    }
+
+    fun removeAll(){
+        items.removeAll(itemsremoval)
+        notifyDataSetChanged()
     }
 }
 
