@@ -77,11 +77,11 @@ class MainActivity : AppCompatActivity() {
 
         messageEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -102,9 +102,9 @@ class MainActivity : AppCompatActivity() {
 
         authStateListener = object : FirebaseAuth.AuthStateListener {
             override fun onAuthStateChanged(firebaseAuth: FirebaseAuth) {
-                val user: FirebaseUser = firebaseAuth.currentUser!!
+                val user: FirebaseUser? = firebaseAuth.currentUser
 
-                if (!user.uid.isEmpty()) {
+                if (user != null) {
                     onSignedInInitialize(user.displayName!!)
                     Toast.makeText(this@MainActivity, "Estas Logeado. Bienvenido !!", Toast.LENGTH_LONG).show()
                 } else {
@@ -114,8 +114,7 @@ class MainActivity : AppCompatActivity() {
                             .setIsSmartLockEnabled(false)
                             .setAvailableProviders(
                                     Arrays.asList(AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                                            AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
-                                            AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build()))
+                                            AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
                             .build(), RC_SIGN_IN)
                 }
             }
@@ -137,15 +136,15 @@ class MainActivity : AppCompatActivity() {
         if (childEventListener == null) {
             childEventListener = object : ChildEventListener {
                 override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                 }
 
                 override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                 }
 
                 override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                 }
 
                 override fun onChildAdded(dataSnapshot: DataSnapshot?, p1: String?) {
@@ -154,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                 }
             }
             msgDataBaseReference.addChildEventListener(childEventListener)
